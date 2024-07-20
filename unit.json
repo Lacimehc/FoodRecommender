@@ -1,0 +1,58 @@
+{
+    "tsp": {
+        "đường": "tsp đường",
+        "nước tương": "tsp nước tương",
+        "gừng": "tsp gừng",
+        "tỏi": "tsp tỏi"
+    },
+    "muỗng cafe": {
+        "đường": "tsp đường",
+        "nước tương": "tsp nước tương",
+        "gừng": "tsp gừng",
+        "tỏi": "tsp tỏi"
+    },
+    "tbsp": {
+        "đường": "tbsp đường",
+        "nước tương": "tbsp nước tương",
+        "gừng": "tbsp gừng",
+        "tỏi": "tbsp tỏi"
+    },
+    "muỗng canh": {
+        "đường": "tbsp đường",
+        "nước tương": "tbsp nước tương",
+        "gừng": "tbsp gừng",
+        "tỏi": "tbsp tỏi"
+    },
+    "tép": {
+        "tỏi": "tép tỏi"
+    },
+    "củ": {
+        "cà rốt": "củ cà rốt",
+        "tỏi": "củ tỏi",
+        "khoai tây": "củ khoai tây",
+        "gừng": "củ gừng",
+        "hành tím": "củ hành tím",
+        "dền": "củ dền",
+        "khoai lang": "củ khoai lang"
+    },
+    "trái": {
+        "cà chua": "trái cà chua",
+        "cà tím": "trái cà tím",
+        "dưa leo": "trái dưa leo",
+        "dưa chuột": "trái dưa leo",
+        "bí đỏ": "trái bí đỏ",
+        "trứng gà": "trái trứng gà",
+        "trứng vịt": "trái trứng vịt",
+        "ớt chuông": "trái ớt chuông"
+    },
+    "quả": {
+        "cà chua": "quả cà chua",
+        "cà tím": "quả cà tím",
+        "dưa leo": "quả dưa leo",
+        "dưa chuột": "quả dưa leo",
+        "bí đỏ": "quả bí đỏ",
+        "trứng gà": "quả trứng gà",
+        "trứng vịt": "quả trứng vịt",
+        "ớt chuông": "quả ớt chuông"
+    }
+}

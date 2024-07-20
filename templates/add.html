@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/add_recipe.css">
+        <title>Food Recommender</title>
+    </head>
+    <body>
+        <h1>Thêm món ăn</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form__field">
+                <label for="name" class="form__label">Tên món ăn: </label>
+                <input type="text" id="name" name="name" class="form__input">
+            </div>
+
+            <div class="form__field">
+                <label for="ingredient" class="form__label">Tên nguyên liệu: </label>
+                <textarea 
+                    type="text" 
+                    id="ingredient" 
+                    name="ingredient" 
+                    class="form__input"
+                    rows="4"
+                    cols="50">
+                </textarea>
+            </div>
+            
+            <div class="form__field">
+                <label for="step" class="form__label">Các bước nấu:</label>
+                <textarea 
+                    type="text" 
+                    id="step" 
+                    name="step" 
+                    class="form__input"
+                    rows="4"
+                    cols="50">
+                </textarea>
+            </div>
+
+            <div class="form__field">
+                <label for="serving" class="form__label">Số người ăn</label>
+                <input type="number" id="serving" name="serving" class="form__input">
+            </div>
+
+            <div class="form__field">
+                <label for="image" class="form__label">Hình ảnh món ăn</label>
+                <input type="file" id="image" name="image" class="form__input form__file">
+            </div>
+
+            <div class="form__field">
+                <input 
+                    type="submit" 
+                    class="form__submit" 
+                    value="Thêm"
+                >
+            </div>
+        </form>
+    </body>
+</html>

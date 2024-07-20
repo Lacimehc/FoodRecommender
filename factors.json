@@ -1,0 +1,48 @@
+{
+    "muỗng cafe": 6,       
+    "muỗng canh": 18,      
+    "tsp": 6,       
+    "tbsp": 18,    
+
+    "tsp tỏi": 2.8,        
+    "tbsp tỏi": 8.4,       
+    
+    "tsp gừng": 2,         
+    "tbsp gừng": 6,         
+    
+    "tsp đường": 4.2,       
+    "tbsp đường": 12.6,    
+    
+    "tsp nước tương": 5.34,        
+    "tbsp nước tương": 16,        
+    
+    "tép tỏi": 3,          
+    
+    "củ tỏi": 24,          
+    "củ cà rốt": 61,
+    "củ khoai tây": 213,
+    "củ gừng": null,
+    "củ hành tím": null,
+    "củ dền": null,
+    "củ khoai lang": null,
+    
+    "trái trứng gà": 44,   
+    "trái trứng vịt": 70,  
+    "trái cà chua": 123,   
+    "trái cà tím": 548,   
+    "trái dưa leo": 301,
+    "trái ớt chuông": 119,
+    
+    "quả trứng gà": 44,    
+    "quả trứng vịt": 70,   
+    "quả cà chua": 123,    
+    "quả cà tím": 548,
+    "quả dưa leo": 301,
+    "quả ớt chuông": 119,
+    
+    "gram": 1,             
+    "g": 1,
+    "kg": 1000,
+    "ml": 1,                
+    "l": 1000              
+}

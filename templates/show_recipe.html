@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Recipe</title>
+		<link rel="stylesheet" href="/static/show_list.css" />
+	</head>
+	<body>
+		<h1>Thực đơn</h1>
+		<ol>
+			<div class="container swiper">
+				<div class="slider-wrapper">
+					<div class="card-list swiper-wrapper">
+						{% for entry in entries %} 
+						<li>
+							{% if entry.image %}
+								<img src="data:image/png;base64,{{ entry.image }}" alt="Image of {{ entry.name }}" class="food-image">
+							{% else %}
+								Không có hình ảnh
+							{% endif %}
+							<h2 class="food-name">Tên món ăn: {{ entry.name }}</h2>
+							
+							Nguyên liệu:
+							<ul>
+								{% for ingredient in entry.ingredient %}
+								<li>{{ ingredient }}</li>
+								{% endfor %}
+							</ul>
+				
+							Các bước nấu:  <br>
+							<ul>
+								{% for step in entry.step %}
+								<li> {{ step }}</li>
+								{% endfor %}	
+							</ul>
+		
+							Phục vụ cho: {{ entry.serving }} người <br>
+							
+							
+						</li>
+						{% endfor %}
+				</ol>
+		
+					</div>
+				</div>
+			</div>
+	</body>
+</html>

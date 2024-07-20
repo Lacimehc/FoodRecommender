@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card slider HTML and CSS</title>
+    <link rel="stylesheet" href="/static/swiper_style.css" />
+    <!-- Linking SwiperJS CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>  </head>
+  <body>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">Food Recommender</label>
+      <ul>
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Recipes</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+    </nav>
+
+    <div class="container swiper">
+      <div class="slider-wrapper">
+        <div class="card-list swiper-wrapper">
+          {% for entry in entries %}
+          <div class="card-item swiper-slide">
+            {% if entry.image %}
+              <img class="food-image" src="data:image/png;base64,{{ entry.image }}" alt="Image of {{ entry.name }}">
+            {% else %}
+              Không có hình ảnh
+            {% endif %}
+            <h1 class="food-name">{{ entry.name }}</h1>
+            <p class="serving">Khẩu phần ăn: {{ entry.serving }} người</p>              
+            <button class="detail-button">Chi tiết</button>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-slide-button swiper-button-prev"></div>
+        <div class="swiper-slide-button swiper-button-next"></div>
+      </div>
+    </div>
+
+    <!-- Linking SwiperJS script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Linking custom script -->
+    <script src="/static/script.js">
+      const swiper = new Swiper(".slider-wrapper", {
+        // Optional parameters
+        loop: true,
+        grabCursor: true,
+        spaceBetween: 30,
+      
+        // If we need pagination
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+      
+        // Navigation arrows
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      
+        // Responsive breakpoint
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+      });
+      
+    </script>
+  </body>
+</html>

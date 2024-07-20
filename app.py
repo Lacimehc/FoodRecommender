@@ -53,7 +53,7 @@ def swiper():
             'image': image_base64
         })
     
-    return render_template("card_slider.html", entries = recipe_entries)
+    return render_template("home_page.html", entries = recipe_entries)
 
 
 @app.route("/add_recipe", methods = ["GET", "POST"])
@@ -91,6 +91,8 @@ def add():
                     )
                 )
     return render_template("add.html")
+
+
 
 
 if __name__ == '__main__':

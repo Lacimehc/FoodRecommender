@@ -1,0 +1,235 @@
+/* import font */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url("/static/image/bg3.jfif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+nav {
+  background: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav li {
+  height: 50px;
+}
+
+nav .web-name {
+  font-size: 20px;
+}
+
+nav a {
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+nav a:hover:not(.in-box) {
+  background-color: #f0f0f0;
+}
+
+nav li:first-child {
+  margin-right: auto;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sidebar li {
+  width: 100%;
+}
+
+.sidebar a {
+  width: 100%;
+}
+
+.box {
+  height: 30px;
+  display: flex;
+  cursor: pointer;
+  padding: 10px 20px;
+  background: #7b8b66;
+  border-radius: 30px;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.box:hover input {
+  width: 400px;
+}
+
+.box input {
+  width: 0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  transition: 0.8s;
+  background: transparent;
+}
+
+::placeholder {
+  color: black;
+}
+
+.box a .fas {
+  font-size: 18px;
+}
+
+.monthly-dish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+body .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 30px 55px;
+}
+
+.food-name {
+  text-align: center;
+}
+
+.card-list .card-item {
+  color: #fff;
+  user-select: none;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  height: 500px;
+}
+
+.card-list .card-item .food-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 3px solid #fff;
+  padding: 4px;
+}
+
+.card-list .card-item .serving {
+  font-size: 1rem;
+  color: #e3e3e3;
+  font-weight: 500;
+  margin: 14px 0 20px;
+}
+
+.card-list .card-item .detail-button {
+  font-size: 1.25rem;
+  padding: 10px 35px;
+  color: #030728;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid transparent;
+  transition: 0.2s ease;
+}
+
+.card-list .card-item .detail-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.slider-wrapper .swiper-pagination-bullet {
+  background: #fff;
+  height: 15px;
+  width: 15px;
+}
+
+.slider-wrapper .swiper-slide-button {
+  color: #fff;
+  margin-top: -50px;
+}
+
+.slider-wrapper .swiper-slide-button:hover {
+  color: #4658ff;
+}
+
+.menu-button {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .slider-wrapper {
+    margin: 0 10px 40px;
+  }
+
+  .slider-wrapper .swiper-slide-button {
+    display: none;
+  }
+
+  .hideOnMoblie {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .box:hover input {
+    .web-name {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .sidebar {
+    width: 100%;
+  }
+}

@@ -78,14 +78,12 @@ nav li:first-child {
   width: 100%;
 }
 
-.box {
-  height: 30px;
+.box {  
   display: flex;
   cursor: pointer;
   padding: 10px 20px;
   background: #7b8b66;
   border-radius: 30px;
-  align-items: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
@@ -108,6 +106,12 @@ nav li:first-child {
 
 .box a .fas {
   font-size: 18px;
+}
+
+.box button {
+  display: inline;
+  background: none;
+  border: none;
 }
 
 .monthly-dish {
@@ -222,10 +226,13 @@ body .container {
   }
 
   .box:hover input {
-    .web-name {
-      display: none;
-    }
+    width: 200px;
   }
+
+  .box:hover .search-button {
+    display: none;
+  }
+
 }
 
 @media (max-width: 400px) {

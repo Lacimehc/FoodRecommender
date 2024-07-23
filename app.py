@@ -44,6 +44,7 @@ def home():
         step_list = re.findall(r"'(Bước \d+:.*?)'", step_string)
         step_list = [step.strip("' ") for step in step_list]
 
+
         recipe_entries.append({
             'id': recipe[0],
             'name': recipe[1],

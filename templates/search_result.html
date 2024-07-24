@@ -27,7 +27,7 @@
         <li><a href="#">Help</a></li>
       </ul>
       <ul>
-        <li class="web-name"><a href="home_page">Food Recommender</a></li>
+        <li class="web-name"><a href="{{ url_for('home') }}">Food Recommender</a></li>
         <div class="box">
           <form action="{{ url_for('search') }}" method="GET">
             <input type="text" name="search_query" placeholder="Tìm kiếm..." />
@@ -52,8 +52,10 @@
     <div class="container swiper">
       <div class="slider-wrapper">
         <div class="card-list swiper-wrapper">
+
           {% for entry in entries %}
           <div class="card-item swiper-slide">
+            
             {% if entry.image %}
             <img
               class="food-image"
@@ -61,11 +63,13 @@
               alt="Image of {{ entry.name }}"
             />
             {% else %} Không có hình ảnh {% endif %}
+
             <h1 class="food-name">{{ entry.name }}</h1>
             <p class="serving">Khẩu phần ăn: {{ entry.serving }} người</p>
-            <button class="detail-button" type="submit">Chi tiết</button>
+            <button class="detail-button" onclick="window.location.href='{{ url_for('recipe_detail', recipe_id=entry.id) }}'">Chi tiết</button>
           </div>
           {% endfor %}
+
         </div>
 
         <div class="swiper-pagination"></div>

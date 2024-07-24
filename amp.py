@@ -186,6 +186,10 @@ def predict_total_nutrition(food_items):
             if unit not in conversion_factors:
                 print(f"- Đơn vị không được hỗ trợ: {food_name} ({amount} {unit})")
         print()
+        
+    for key in total_nutrition:
+        total_nutrition[key] = round(total_nutrition[key], 2)
+        
     return total_nutrition
 
 # Main logic

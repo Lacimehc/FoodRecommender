@@ -56,8 +56,6 @@ nav li:first-child {
   margin-right: auto;
 }
 
-/* Slider */
-
 .sidebar {
   position: fixed;
   top: 0;
@@ -81,6 +79,8 @@ nav li:first-child {
 .sidebar a {
   width: 100%;
 }
+
+/* Slider */
 
 .slider-wrapper {
   overflow: hidden;

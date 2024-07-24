@@ -3,14 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Food Recommender</title>
-    <link rel="stylesheet" href="/static/home_page_style.css" />
-
-    <!-- Linking SwiperJS CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
+    <title>{{ recipe.name }}</title>
+    <link rel="stylesheet" href="/static/detail_page_style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -44,46 +38,48 @@
         </li>
       </ul>
     </nav>
+    
+    <h1>{{ recipe.name }}</h1>
 
-    <div class="monthly-dish">
-      <h1>MÓN ĂN CỦA THÁNG</h1>
-    </div>
+    {% if recipe.image %}
+    <img
+      class="food-image"
+      src="data:image/png;base64,{{ recipe.image }}"
+      alt="Image of {{ recipe.name }}"
+    />
+    {% else %} Không có hình ảnh {% endif %}
 
-    <div class="container swiper">
-      <div class="slider-wrapper">
-        <div class="card-list swiper-wrapper">
-          {% for entry in entries %}
-          <div class="card-item swiper-slide">
-            {% if entry.image %}
-            <img
-              class="food-image"
-              src="data:image/png;base64,{{ entry.image }}"
-              alt="Image of {{ entry.name }}"
-            />
-            {% else %} Không có hình ảnh {% endif %}
-            <h1 class="food-name">{{ entry.name }}</h1>
-            <p class="serving">Khẩu phần ăn: {{ entry.serving }} người</p>
-            <button class="detail-button" onclick="window.location.href='{{ url_for('recipe_detail', recipe_id=entry.id) }}'">Chi tiết</button>
+    <h2>Nguyên liệu</h2>
+    <ul>
+      {% for ingredient in recipe.ingredient %}
+      <li>{{ ingredient }}</li>
+      {% endfor %}
+    </ul>
 
-          </div>
-          {% endfor %}
-        </div>
+    <h2>Các bước nấu</h2>
+    <ol>
+      {% for step in recipe.step %}
+      <li>{{ step }}</li>
+      {% endfor %}
+    </ol>
 
-        <div class="swiper-pagination"></div>
-        <div class="swiper-slide-button swiper-button-prev"></div>
-        <div class="swiper-slide-button swiper-button-next"></div>
-      </div>
-    </div>
-
-    <div class="nutrition-predict">
-      <h4>Predict</h4>
-    </div>
-
-    <!-- Linking SwiperJS script -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <!-- Linking custom script -->
-    <script src="/static/script.js"></script>
+    <h2>Thông tin dinh dưỡng</h2>
+    <ul>
+      <li>Calories: {{ nutrition.calories }} kcal</li>
+      <li>Fats: {{ nutrition.fats }} g</li>
+      <li>Saturated Fat: {{ nutrition.saturated_fat }} g</li>
+      <li>Cholesterol: {{ nutrition.cholesterol }} mg</li>
+      <li>Sodium: {{ nutrition.sodium }} mg</li>
+      <li>Carbohydrates: {{ nutrition.carbs }} g</li>
+      <li>Dietary Fiber: {{ nutrition.dietary_fiber }} g</li>
+      <li>Sugars: {{ nutrition.sugars }} g</li>
+      <li>Protein: {{ nutrition.protein }} g</li>
+      <li>Calcium: {{ nutrition.calcium }} mg</li>
+      <li>Iron: {{ nutrition.iron }} mg</li>
+      <li>Potassium: {{ nutrition.potassium }} mg</li>
+      <li>Vitamin A: {{ nutrition.vitamin_A }} mcg</li>
+      <li>Vitamin C: {{ nutrition.vitamin_C }} mg</li>
+    </ul>
 
     <script>
       function showSidebar() {

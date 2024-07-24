@@ -2,6 +2,8 @@ from flask import render_template, request, Flask, url_for, flash, redirect
 import psycopg2
 import base64
 import re 
+from amp import *
+
 
 app = Flask(__name__)
 
@@ -93,6 +95,46 @@ def search():
         })
 
     return render_template("search_result.html", entries=recipe_entries)
+
+@app.route("/recipe/<int:recipe_id>", methods=["GET"])
+def recipe_detail(recipe_id):
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM recipe WHERE id = %s", (recipe_id,))
+            recipe = cursor.fetchone()
+    
+    if not recipe:
+        return "Recipe not found", 404
+
+    image_data = recipe[5]
+    if image_data:
+        image_base64 = base64.b64encode(image_data).decode('utf-8')
+    else:
+        image_base64 = None
+
+    ingredient_string = recipe[2]
+    ingredient_list = re.findall(r"'(.*?)'", ingredient_string)
+    ingredient_list = [ingredient.strip("' ") for ingredient in ingredient_list]
+
+    step_string = recipe[3]
+    step_list = re.findall(r"'(Bước \d+:.*?)'", step_string)
+    step_list = [step.strip("' ") for step in step_list]
+
+    recipe_details = {
+        'id': recipe[0],
+        'name': recipe[1],
+        'ingredient': ingredient_list,
+        'step': step_list,
+        'serving': recipe[4],
+        'image': image_base64
+    }
+
+    # Predict total nutrition
+    total_nutrition = predict_total_nutrition([(ingredient.split(":")[0].strip(), ingredient.split(":")[1].strip().split()[0], ingredient.split(":")[1].strip().split()[1]) for ingredient in ingredient_list])
+    
+    return render_template("recipe_detail.html", recipe=recipe_details, nutrition=total_nutrition)
+
+
 
 @app.route("/add_recipe", methods = ["GET", "POST"])
 def add():

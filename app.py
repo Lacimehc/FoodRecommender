@@ -96,11 +96,11 @@ def search():
 
     return render_template("search_result.html", entries=recipe_entries)
 
-@app.route("/recipe/<int:recipe_id>", methods=["GET"])
-def recipe_detail(recipe_id):
+@app.route("/recipe/<recipe_name>", methods=["GET"])
+def recipe_detail(recipe_name):
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM recipe WHERE id = %s", (recipe_id,))
+            cursor.execute("SELECT * FROM recipe WHERE name = %s", (recipe_name,))
             recipe = cursor.fetchone()
     
     if not recipe:

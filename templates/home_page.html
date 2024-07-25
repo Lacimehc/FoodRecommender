@@ -63,7 +63,7 @@
             {% else %} Không có hình ảnh {% endif %}
             <h1 class="food-name">{{ entry.name }}</h1>
             <p class="serving">Khẩu phần ăn: {{ entry.serving }} người</p>
-            <button class="detail-button" onclick="window.location.href='{{ url_for('recipe_detail', recipe_id=entry.id) }}'">Chi tiết</button>
+            <button class="detail-button" onclick="window.location.href='{{ url_for('recipe_detail', recipe_name=entry.name) }}'">Chi tiết</button>
 
           </div>
           {% endfor %}

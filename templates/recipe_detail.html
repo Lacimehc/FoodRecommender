@@ -39,47 +39,67 @@
       </ul>
     </nav>
     
-    <h1>{{ recipe.name }}</h1>
+    <div class="recipe-container">
+      <div class="recipe-header">
+        {% if recipe.image %}
+        <img
+          class="recipe-image"
+          src="data:image/png;base64,{{ recipe.image }}"
+          alt="Image of {{ recipe.name }}"
+        />
+        {% else %} Không có hình ảnh {% endif %}
+        <h1 class="recipe-name">{{ recipe.name }}</h1>
+        <div class="recipe-info">
+          <ul>
+            <li class="serving">Khẩu phần ăn: {{ recipe.serving }} người</li>
+          </ul>
+        </div>
+      </div>
 
-    {% if recipe.image %}
-    <img
-      class="food-image"
-      src="data:image/png;base64,{{ recipe.image }}"
-      alt="Image of {{ recipe.name }}"
-    />
-    {% else %} Không có hình ảnh {% endif %}
+      <div class="ingredients-section">
+        <h2>Nguyên liệu</h2>
+          <ul>
+            {% for ingredient in recipe.ingredient %}
+            <li>{{ ingredient }}</li>
+            {% endfor %}
+          </ul>
+        </div>
 
-    <h2>Nguyên liệu</h2>
-    <ul>
-      {% for ingredient in recipe.ingredient %}
-      <li>{{ ingredient }}</li>
-      {% endfor %}
-    </ul>
+        <div class="instructions-section">
+          <h2>Hướng dẫn</h2>
+          <ol>
+            {% for step in recipe.step %}
+            <li>{{ step }}</li>
+            {% endfor %}
+          </ol>
+        </div>
 
-    <h2>Các bước nấu</h2>
-    <ol>
-      {% for step in recipe.step %}
-      <li>{{ step }}</li>
-      {% endfor %}
-    </ol>
+        <div class="nutrition-facts">
+          <h2>Giá trị dinh dưỡng</h2>
+          <ul>
+              <li>Calories: {{ nutrition.calories }} kcal</li>
+              <li>Fats: {{ nutrition.fats }} g</li>
+              <li>Saturated Fat: {{ nutrition.saturated_fat }} g</li>
+              <li>Cholesterol: {{ nutrition.cholesterol }} mg</li>
+              <li>Sodium: {{ nutrition.sodium }} mg</li>
+              <li>Carbohydrates: {{ nutrition.carbs }} g</li>
+              <li>Dietary Fiber: {{ nutrition.dietary_fiber }} g</li>
+              <li>Sugars: {{ nutrition.sugars }} g</li>
+              <li>Protein: {{ nutrition.protein }} g</li>
+              <li>Calcium: {{ nutrition.calcium }} mg</li>
+              <li>Iron: {{ nutrition.iron }} mg</li>
+              <li>Potassium: {{ nutrition.potassium }} mg</li>
+              <li>Vitamin A: {{ nutrition.vitamin_A }} mcg</li>
+              <li>Vitamin C: {{ nutrition.vitamin_C }} mg</li>
+          </ul>
+        </div>
 
-    <h2>Thông tin dinh dưỡng</h2>
-    <ul>
-      <li>Calories: {{ nutrition.calories }} kcal</li>
-      <li>Fats: {{ nutrition.fats }} g</li>
-      <li>Saturated Fat: {{ nutrition.saturated_fat }} g</li>
-      <li>Cholesterol: {{ nutrition.cholesterol }} mg</li>
-      <li>Sodium: {{ nutrition.sodium }} mg</li>
-      <li>Carbohydrates: {{ nutrition.carbs }} g</li>
-      <li>Dietary Fiber: {{ nutrition.dietary_fiber }} g</li>
-      <li>Sugars: {{ nutrition.sugars }} g</li>
-      <li>Protein: {{ nutrition.protein }} g</li>
-      <li>Calcium: {{ nutrition.calcium }} mg</li>
-      <li>Iron: {{ nutrition.iron }} mg</li>
-      <li>Potassium: {{ nutrition.potassium }} mg</li>
-      <li>Vitamin A: {{ nutrition.vitamin_A }} mcg</li>
-      <li>Vitamin C: {{ nutrition.vitamin_C }} mg</li>
-    </ul>
+        <div class="disclaimer">
+          <h6>Giá trị dinh dưỡng nêu trên là giá trị ước tính và có thể thay đổi theo phương pháp chế biến và nguồn gốc nguyên liệu.</h6>
+        </div>
+    </div>
+
+
 
     <script>
       function showSidebar() {

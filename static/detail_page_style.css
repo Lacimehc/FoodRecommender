@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+  list-style: none;
 }
 
 body {
@@ -127,7 +128,80 @@ nav li:first-child {
     width: 80%;
   }
   
-@media (max-width: 800px) {
+
+/* recipe */
+.recipe-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-header {
+  text-align: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.recipe-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.recipe-header h1 {
+  font-size: 2em;
+  margin: 10px 0;
+  color: black;
+}
+
+.recipe-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+  color: #666;
+}
+
+
+.ingredients-section, .instructions-section, .nutrition-facts {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eae9eb;
+}
+
+.ingredients-section h2, .instructions-section h2, .nutrition-facts h2 {
+  color: black;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.ingredients-section ul, .nutrition-facts ul {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.ingredients-section ul li, .nutrition-facts ul li {
+  padding: 3px 0;
+}
+
+/* .instructions-section ol {
+  padding-left: 20px;
+} */
+
+.instructions-section ol li {
+  margin-bottom: 10px;
+}
+
+.nutrition-facts ul {
+  line-height: 1.3;
+}
+
+
+
+@media (max-width: 768px) {
   
     .hideOnMoblie {
       display: none;
@@ -144,7 +218,7 @@ nav li:first-child {
     .box:hover .search-button {
       display: none;
     }
-  
+
   }
   
   @media (max-width: 400px) {

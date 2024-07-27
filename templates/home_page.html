@@ -75,9 +75,55 @@
       </div>
     </div>
 
-    <div class="nutrition-predict">
-      <h4>Predict</h4>
-    </div>
+    <div class="nutrition-container">
+      <div class="nutrition-input">
+          <h4>Nhập thông tin thực phẩm</h4>
+          <form id="nutrition-form" action="{{ url_for('home') }}" method="POST">
+              <label for="food_name">Tên thực phẩm:</label>
+              <input type="text" id="food_name" name="food_name" required><br><br>
+  
+              <label for="amount">Khối lượng:</label>
+              <input type="number" id="amount" name="amount" required><br><br>
+  
+              <label for="unit">Đơn vị:</label>
+              <select id="unit" name="unit" required>
+                  <option value="gram">Gram</option>
+                  <option value="quả">Quả</option>
+                  <option value="trái">Trái</option>
+                  <option value="muỗng cafe">Muỗng cafe</option>
+                  <option value="muỗng canh">Muỗng canh</option>
+                  <option value="ml">ml</option>
+                  <option value="l">l</option>
+              </select><br><br>
+  
+              <button type="submit">Tính toán dinh dưỡng</button>
+          </form>
+      </div>
+  
+      {% if nutrition_info %}
+      <div class="nutrition-result">
+          {% for inf in input_info %}
+              <h4>Kết quả dinh dưỡng cho {{ inf.amount }} {{ inf.unit }} {{ inf.food_name }}</h4>
+          {% endfor %}
+          <p>Calories: {{ nutrition_info.calories }} kcal</p>
+          <p>Chất béo: {{ nutrition_info.fats }} g</p>
+          <p>Chất béo bão hòa: {{ nutrition_info.saturated_fat }} g</p>
+          <p>Cholesterol: {{ nutrition_info.cholesterol }} mg</p>
+          <p>Natri: {{ nutrition_info.sodium }} mg</p>
+          <p>Carbohydrate: {{ nutrition_info.carbs }} g</p>
+          <p>Chất xơ: {{ nutrition_info.dietary_fiber }} g</p>
+          <p>Đường: {{ nutrition_info.sugars }} g</p>
+          <p>Protein: {{ nutrition_info.protein }} g</p>
+          <p>Canxi: {{ nutrition_info.calcium }} mg</p>
+          <p>Sắt: {{ nutrition_info.iron }} mg</p>
+          <p>Kali: {{ nutrition_info.potassium }} mg</p>
+          <p>Vitamin A: {{ nutrition_info.vitamin_A }} mcg</p>
+          <p>Vitamin C: {{ nutrition_info.vitamin_C }} mg</p>
+      </div>
+      {% endif %}
+  </div>
+      
+    
 
     <!-- Linking SwiperJS script -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

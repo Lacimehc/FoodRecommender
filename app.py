@@ -23,29 +23,29 @@ try:
 except psycopg2.errors.DuplicateTable:
     pass
 
-@app.route("/home_page", methods = ["GET", "POST"])
+@app.route("/home_page", methods=["GET", "POST"])
 def home():
+    recipe_entries = []
+    nutrition_info = None
+    input_info = None
+
+    # Fetch recipes from the database
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute("select * from recipe")
+            cursor.execute("SELECT * FROM recipe")
             recipes = cursor.fetchall()
-            
-        recipe_entries = []
+
     for recipe in recipes:
         image_data = recipe[5]
-        if image_data:
-            image_base64 = base64.b64encode(image_data).decode('utf-8')
-        else:
-            image_base64 = None
+        image_base64 = base64.b64encode(image_data).decode('utf-8') if image_data else None
 
         ingredient_string = recipe[2]
         ingredient_list = re.findall(r"'(.*?)'", ingredient_string)
         ingredient_list = [ingredient.strip("' ") for ingredient in ingredient_list]
-        
+
         step_string = recipe[3]
         step_list = re.findall(r"'(Bước \d+:.*?)'", step_string)
         step_list = [step.strip("' ") for step in step_list]
-
 
         recipe_entries.append({
             'id': recipe[0],
@@ -55,8 +55,54 @@ def home():
             'serving': recipe[4],
             'image': image_base64
         })
+
+    if request.method == "POST":
+        food_name = request.form.get("food_name")
+        amount = request.form.get("amount")
+        unit = request.form.get("unit")
+
+        try:
+            amount_value = float(amount)
+        except ValueError:
+            flash("Invalid amount. Please enter a number.")
+            return render_template("home_page.html", entries=recipe_entries)
+
+        # Process the input data and get nutrition info
+        input_info = [{
+            'food_name': food_name,
+            'amount': amount_value,
+            'unit': unit
+        }]
+
+        ingredient_input = [(food_name, amount_value, unit)]
+        nutrition_info = predict_total_nutrition(ingredient_input)
+
+    return render_template("home_page.html", entries=recipe_entries, nutrition_info=nutrition_info, input_info=input_info)
+
+@app.route("/predict_nutrition", methods=["POST"])
+def predict_nutrition():
+    food_name = request.form["food_name"]
+    amount = request.form["amount"]
+    unit = request.form["unit"]
+
+    try:
+        amount_value = float(amount)
+    except ValueError:
+        return "Invalid amount. Please enter a number.", 400
+
+    # Tạo danh sách thông tin đầu vào
+    input_info = [{
+        'food_name': food_name,
+        'amount': amount_value,
+        'unit': unit
+    }]
+
+    # Dự đoán thông tin dinh dưỡng
+    ingredient_input = [(food_name, amount_value, unit)]
+    nutrition_info = predict_total_nutrition(ingredient_input)
     
-    return render_template("home_page.html", entries = recipe_entries)
+    return render_template("home_page.html", nutrition_info=nutrition_info, input_info=input_info)
+
 
 @app.route("/search_result", methods=["GET"])
 def search():

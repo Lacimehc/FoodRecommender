@@ -45,36 +45,6 @@
       </ul>
     </nav>
 
-    <div class="monthly-dish">
-      <h1>MÓN ĂN CỦA THÁNG</h1>
-    </div>
-
-    <div class="container swiper">
-      <div class="slider-wrapper">
-        <div class="card-list swiper-wrapper">
-          {% for entry in entries %}
-          <div class="card-item swiper-slide">
-            {% if entry.image %}
-            <img
-              class="food-image"
-              src="data:image/png;base64,{{ entry.image }}"
-              alt="Image of {{ entry.name }}"
-            />
-            {% else %} Không có hình ảnh {% endif %}
-            <h1 class="food-name">{{ entry.name }}</h1>
-            <p class="serving">Khẩu phần ăn: {{ entry.serving }} người</p>
-            <button class="detail-button" onclick="window.location.href='{{ url_for('recipe_detail', recipe_name=entry.name) }}'">Chi tiết</button>
-
-          </div>
-          {% endfor %}
-        </div>
-
-        <div class="swiper-pagination"></div>
-        <div class="swiper-slide-button swiper-button-prev"></div>
-        <div class="swiper-slide-button swiper-button-next"></div>
-      </div>
-    </div>
-
     <div class="nutrition-container">
       <div class="nutrition-input">
           <h4>Nhập thông tin thực phẩm</h4>
@@ -88,10 +58,11 @@
               <label for="unit">Đơn vị:</label>
               <select id="unit" name="unit" required>
                   <option value="gram">Gram</option>
-                  <option value="quả">Quả</option>
-                  <option value="trái">Trái</option>
                   <option value="muỗng cafe">Muỗng cafe</option>
                   <option value="muỗng canh">Muỗng canh</option>
+                  <option value="củ">Củ</option>
+                  <option value="quả">Quả</option>
+                  <option value="trái">Trái</option>
                   <option value="ml">ml</option>
                   <option value="l">l</option>
               </select><br><br>
@@ -122,6 +93,38 @@
       </div>
       {% endif %}
   </div>
+
+
+    <div class="monthly-dish">
+      <h1>MÓN ĂN CỦA THÁNG</h1>
+    </div>
+
+    <div class="container swiper">
+      <div class="slider-wrapper">
+        <div class="card-list swiper-wrapper">
+          {% for entry in entries %}
+          <div class="card-item swiper-slide">
+            {% if entry.image %}
+            <img
+              class="food-image"
+              src="data:image/png;base64,{{ entry.image }}"
+              alt="Image of {{ entry.name }}"
+            />
+            {% else %} Không có hình ảnh {% endif %}
+            <h1 class="food-name">{{ entry.name }}</h1>
+            <p class="serving">Khẩu phần ăn: {{ entry.serving }} người</p>
+            <button class="detail-button" onclick="window.location.href='{{ url_for('recipe_detail', recipe_name=entry.name) }}'">Chi tiết</button>
+
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-slide-button swiper-button-prev"></div>
+        <div class="swiper-slide-button swiper-button-next"></div>
+      </div>
+    </div>
+
       
     
 

@@ -58,14 +58,13 @@ def home():
 
     if request.method == "POST":
         food_name = request.form.get("food_name")
-        amount = request.form.get("amount")
+        amount_value = request.form.get("amount")
         unit = request.form.get("unit")
 
-        try:
-            amount_value = float(amount)
-        except ValueError:
-            flash("Invalid amount. Please enter a number.")
-            return render_template("home_page.html", entries=recipe_entries)
+        # try:
+        #     amount_value = float(amount)
+        # except ValueError:
+        #     return render_template("home_page.html", entries=recipe_entries)
 
         # Process the input data and get nutrition info
         input_info = [{

@@ -57,7 +57,7 @@ def home():
         })
 
     if request.method == "POST":
-        food_name = request.form.get("food_name")
+        food_name = request.form.get("food_name").strip().lower()
         amount_value = request.form.get("amount")
         unit = request.form.get("unit")
 

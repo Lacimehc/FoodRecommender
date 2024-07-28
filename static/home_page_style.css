@@ -90,15 +90,17 @@ nav li:first-child {
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
   border-radius: 10px;
-  width: 80%;
+  max-width: 1200px;
   margin: 40px auto;
 }
 
-.nutrition-input, .nutrition-result {
-  width: 48%;
+.nutrition-input,
+.nutrition-result {
+  width: 45%;
 }
 
-.nutrition-input h4, .nutrition-result h4 {
+.nutrition-input h4,
+.nutrition-result h4 {
   margin-bottom: 20px;
   text-align: center;
 }
@@ -114,7 +116,7 @@ nav li:first-child {
   font-weight: bold;
 }
 
-.nutrition-input input, 
+.nutrition-input input,
 .nutrition-input select {
   width: 100%;
   padding: 10px;
@@ -144,6 +146,22 @@ nav li:first-child {
   margin: 5px 0;
   padding-top: 5px;
   text-align: left;
+}
+
+.nutrition-box {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.nutrition-category {
+  font-weight: bold;
+}
+
+.nutrition-value {
+  text-align: right;
 }
 
 /* Slider */
@@ -227,10 +245,9 @@ nav li:first-child {
   display: none;
 }
 
-
 /* Searching bar */
 
-.box {  
+.box {
   display: flex;
   cursor: pointer;
   padding: 10px 20px;
@@ -266,7 +283,9 @@ nav li:first-child {
   border: none;
 }
 
-.monthly-dish {
+/* Some adjustments */
+
+.some-recipe {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -280,9 +299,6 @@ body .container {
   margin-top: 60px;
   width: 80%;
 }
-
-
-
 
 @media (max-width: 800px) {
   .slider-wrapper {
@@ -308,7 +324,6 @@ body .container {
   .box:hover .search-button {
     display: none;
   }
-
 }
 
 @media (max-width: 400px) {

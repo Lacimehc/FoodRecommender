@@ -17,7 +17,6 @@ with open('factors.json', 'r', encoding='utf-8') as f:
 food_name_mapping = {
     'thịt ba chỉ': 'thịt ba chỉ',
     'thịt ba rọi': 'thịt ba chỉ',
-    # Thêm các ánh xạ tên thực phẩm khác nếu cần
 }
 
 # Hàm cập nhật đơn vị

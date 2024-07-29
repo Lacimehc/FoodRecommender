@@ -285,7 +285,7 @@ nav li:first-child {
 
 /* Some adjustments */
 
-.some-recipe {
+.some-recipe, .search-result {
   display: flex;
   align-items: center;
   justify-content: center;

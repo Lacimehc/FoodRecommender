@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_percentage_error, mean_absolute_error
 
 with open('unit.json', 'r', encoding='utf-8') as f:
     unit_mapping = json.load(f)
@@ -54,7 +54,10 @@ df2['weight(g)'] = df2.apply(lambda row: convert_to_grams(row['amount'], row['un
 
 # Tạo mô hình học máy cho bộ dữ liệu đầu tiên
 X1 = df1[['food_name', 'weight(g)']]
-y1 = df1[['calories(g)', 'fats(g)', 'carbs(g)', 'protein(g)', 'saturated_fat(g)', 'cholesterol(mg)', 'sodium(mg)', 'dietary_fiber(g)', 'sugars(g)', 'calcium(mg)', 'iron(mg)', 'potassium(mg)', 'vitamin_A(mcg)', 'vitamin_C(mg)']]
+y1 = df1[['calories(g)', 'fats(g)', 'carbs(g)', 'protein(g)', 
+            'saturated_fat(g)', 'cholesterol(mg)', 'sodium(mg)', 'dietary_fiber(g)', 
+            'sugars(g)', 'calcium(mg)', 'iron(mg)', 'potassium(mg)', 
+            'vitamin_A(mcg)', 'vitamin_C(mg)']]
 
 preprocessor1 = ColumnTransformer(
     transformers=[
@@ -82,9 +85,13 @@ model1 = Pipeline(steps=[
 X1_train, X1_test, y1_train, y1_test = train_test_split(X1, y1, test_size=0.2, random_state=66)
 model1.fit(X1_train, y1_train)
 
+
 # Tạo mô hình học máy cho bộ dữ liệu thứ hai
 X2 = df2[['food_name', 'weight(g)']]
-y2 = df2[['calories(g)', 'fats(g)', 'carbs(g)', 'protein(g)', 'saturated_fat(g)', 'cholesterol(mg)', 'sodium(mg)', 'dietary_fiber(g)', 'sugars(g)', 'calcium(mg)', 'iron(mg)', 'potassium(mg)', 'vitamin_A(mcg)', 'vitamin_C(mg)']]
+y2 = df2[['calories(g)', 'fats(g)', 'carbs(g)', 'protein(g)', 
+            'saturated_fat(g)', 'cholesterol(mg)', 'sodium(mg)', 'dietary_fiber(g)', 
+            'sugars(g)', 'calcium(mg)', 'iron(mg)', 'potassium(mg)', 
+            'vitamin_A(mcg)', 'vitamin_C(mg)']]
 
 preprocessor2 = ColumnTransformer(
     transformers=[
@@ -111,6 +118,9 @@ model2 = Pipeline(steps=[
 
 X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2, test_size=0.2, random_state=66)
 model2.fit(X2_train, y2_train)
+
+
+
 
 def predict_total_nutrition(food_items):
     total_nutrition = {'calories': 0, 'fats': 0, 'carbs': 0, 'protein': 0, 'saturated_fat': 0,'cholesterol': 0, 'sodium': 0, 'dietary_fiber': 0, 'sugars': 0, 'calcium': 0, 'iron': 0, 'potassium': 0, 'vitamin_A': 0, 'vitamin_C': 0}
@@ -191,9 +201,46 @@ def predict_total_nutrition(food_items):
         
     return total_nutrition
 
+
+# Tính toán và hiển thị các chỉ số đánh giá mô hình
+def evaluate_model(model, X_test, y_test):
+    y_pred = model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    mape = mean_absolute_percentage_error(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = mean_squared_error(y_test, y_pred, squared=False)
+    
+    return mse, r2, mape, mae, rmse
+
+
+
+
+
+
 # Main logic
 if __name__ == "__main__":
     from ingredient_selection import get_user_input, show_recipes_and_predict
+
+    mse1, r2_1, mape1, mae1, rmse1 = evaluate_model(model1, X1_test, y1_test)
+    print("Đánh giá mô hình cho bộ dữ liệu đầu tiên:")
+    print(f"  Mean Squared Error: {mse1:.2f}")
+    print(f"  R^2 Score: {r2_1:.2f}")
+    print(f"  Mean Absolute Percentage Error: {mape1:.2f}")
+    print(f"  Mean Absolute Error: {mae1:.2f}")
+    print(f"  Root Mean Squared Error: {rmse1:.2f}")
+    print("")
+
+    # Đánh giá mô hình cho bộ dữ liệu thứ hai
+    mse2, r2_2, mape2, mae2, rmse2 = evaluate_model(model2, X2_test, y2_test)
+    print("Đánh giá mô hình cho bộ dữ liệu thứ hai:")
+    print(f"  Mean Squared Error: {mse2:.2f}")
+    print(f"  R^2 Score: {r2_2:.2f}")
+    print(f"  Mean Absolute Percentage Error: {mape2:.2f}")
+    print(f"  Mean Absolute Error: {mae2:.2f}")
+    print(f"  Root Mean Squared Error: {rmse2:.2f}")
+    print("")
+
 
     print("Mời bạn chọn:")
     print("1. Nhập thủ công")

@@ -29,7 +29,7 @@ def home():
     nutrition_info = None
     input_info = None
 
-    # Fetch recipes from the database
+    #lấy ra table recipe
     with connection:
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM recipe")
@@ -174,7 +174,7 @@ def recipe_detail(recipe_name):
         'image': image_base64
     }
 
-    # Predict total nutrition
+    # xử lý đầu vào và dữ đoán
     total_nutrition = predict_total_nutrition([(ingredient.split(":")[0].strip(), ingredient.split(":")[1].strip().split()[0], ingredient.split(":")[1].strip().split()[1]) for ingredient in ingredient_list])
     
     return render_template("recipe_detail.html", recipe=recipe_details, nutrition=total_nutrition)
@@ -190,7 +190,7 @@ def add():
         serving = int(request.form.get("serving"))
         image_file = request.files.get("image")
         
-        # Validate inputs
+        # Xử lý lỗi đầu vào
         if not name or not ingredient or not step or not serving:
             flash("All fields are required.")
             return redirect(url_for('add'))

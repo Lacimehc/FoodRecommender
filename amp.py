@@ -214,10 +214,6 @@ def evaluate_model(model, X_test, y_test):
     return mse, r2, mape, mae, rmse
 
 
-
-
-
-
 # Main logic
 if __name__ == "__main__":
     from ingredient_selection import get_user_input, show_recipes_and_predict
